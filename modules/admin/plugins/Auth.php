@@ -1,5 +1,7 @@
 <?php
 
+namespace Admin\Plugins;
+
 use Phalcon\Events\Event,
 	Phalcon\Mvc\User\Plugin,
 	Phalcon\Mvc\Dispatcher,
@@ -24,14 +26,14 @@ class Auth extends Plugin
 //		echo '<pre>'; print_r($ini); echo '</pre>';
 //		exit;
 
-		$acl = new Phalcon\Acl\Adapter\Memory();
+		$acl = new \Phalcon\Acl\Adapter\Memory();
 
-		$acl->setDefaultAction(Phalcon\Acl::DENY);
+		$acl->setDefaultAction(\Phalcon\Acl::DENY);
 
 		//Register roles
 		$roles = array(
-			'users' => new Phalcon\Acl\Role('Users'),
-			'guests' => new Phalcon\Acl\Role('Guests')
+			'users' => new \Phalcon\Acl\Role('Users'),
+			'guests' => new \Phalcon\Acl\Role('Guests')
 		);
 
 		foreach ($roles as $role) {
@@ -44,7 +46,7 @@ class Auth extends Plugin
 		);
 
 		foreach ($privateResources as $resource => $actions) {
-			$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
+			$acl->addResource(new \Phalcon\Acl\Resource($resource), $actions);
 		}
 
 		//Public area resources
@@ -54,7 +56,7 @@ class Auth extends Plugin
 		);
 
 		foreach ($publicResources as $resource => $actions) {
-			$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
+			$acl->addResource(new \Phalcon\Acl\Resource($resource), $actions);
 		}
 
 		//Grant access to public areas to both users and guests

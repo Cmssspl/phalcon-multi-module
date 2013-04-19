@@ -15,9 +15,10 @@ class Module implements ModuleDefinitionInterface {
 		//loader namespace
 		$loader = new \Phalcon\Loader();
 		$namespaces = array(
-			__NAMESPACE__.'\Controllers' 	=> 'controllers/',
-			__NAMESPACE__.'\Models' 		=> 'models/',
-			__NAMESPACE__.'\Forms' 			=> 'forms/',
+			__NAMESPACE__.'\Controllers' 	=> $config->application->controllersDir,
+			__NAMESPACE__.'\Models' 		=> $config->application->modelsDir,
+			__NAMESPACE__.'\Forms' 			=> $config->application->formsDir,
+			__NAMESPACE__.'\Plugins' 		=> $config->application->pluginsDir,
 		);
 
 		if(!empty($config->library)) {
@@ -31,9 +32,22 @@ class Module implements ModuleDefinitionInterface {
 		$loader->register();
 
 		//Registering a dispatcher
-		$di->set('dispatcher', function() {
+		$di->setShared('dispatcher', function() use ($di) {
+			//Obtain the standard eventsManager from the DI
+			$eventsManager = $di->getShared('eventsManager');
+
+			//Instantiate the Security plugin
+			$security = new Plugins\Auth($di);
+
+			//Listen for events produced in the dispatcher using the Security plugin
+			$eventsManager->attach('dispatch', $security);
+
 			$dispatcher = new \Phalcon\Mvc\Dispatcher();
-			$dispatcher->setDefaultNamespace('Admin\Controllers\\');
+			$dispatcher->setDefaultNamespace(__NAMESPACE__.'\Controllers');
+
+			//Bind the EventsManager to the Dispatcher
+			$dispatcher->setEventsManager($eventsManager);
+
 			return $dispatcher;
 		});
 
