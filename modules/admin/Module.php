@@ -14,6 +14,7 @@ class Module implements ModuleDefinitionInterface {
 			array(
 				'Admin\Controllers' => 'controllers/',
 				'Admin\Models'      => 'models/',
+				'Admin\Forms'      	=> 'forms/'
 			)
 		);
 
@@ -47,13 +48,7 @@ class Module implements ModuleDefinitionInterface {
 					}
 				}
 
-				//echo '<pre>'; print_r($router); echo '</pre>';
-				//exit;
-
 				$router->handle();
-
-				echo $router->getControllerName().'<br>';
-				echo $router->getActionName().'<br>'.'<br>';
 			}
 		}
 
@@ -71,7 +66,8 @@ class Module implements ModuleDefinitionInterface {
 					));
 
 					return $volt;
-				}
+				},
+				'.phtml' => 'Phalcon\Mvc\View\Engine\Php'
 			));
 
 			return $view;
