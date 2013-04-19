@@ -7,20 +7,13 @@ use Phalcon\Events\Event,
 	Phalcon\Mvc\Dispatcher,
 	Phalcon\Acl;
 
-/**
- * Security
- *
- * This is the security plugin which controls that users only have access to the modules they're assigned to
- */
 class Auth extends Plugin
 {
-	public function __construct($dependencyInjector)
-	{
+	public function __construct($dependencyInjector) {
 		$this->_dependencyInjector = $dependencyInjector;
 	}
 
-	public function getAcl()
-	{
+	public function getAcl() {
 //		$ini = new \Phalcon\Config\Adapter\Ini('app/configs/acl.ini');
 //
 //		echo '<pre>'; print_r($ini); echo '</pre>';
@@ -76,11 +69,7 @@ class Auth extends Plugin
 		return $acl;
 	}
 
-	/**
-	 * This action is executed before execute any action in the application
-	 */
-	public function beforeDispatch(Event $event, Dispatcher $dispatcher)
-	{
+	public function beforeDispatch(Event $event, Dispatcher $dispatcher) {
 
 		$auth = $this->session->get('auth');
 
@@ -92,9 +81,6 @@ class Auth extends Plugin
 
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
-
-//		echo $controller;
-//		echo $action;
 
 		$acl = $this->getAcl();
 
