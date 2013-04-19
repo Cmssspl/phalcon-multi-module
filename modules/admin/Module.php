@@ -20,12 +20,6 @@ class Module implements ModuleDefinitionInterface {
 			__NAMESPACE__.'\Forms' 			=> 'forms/',
 		);
 
-		if(!empty($config->namespace)) {
-			foreach($config->namespace as $namespace) {
-				$namespaces[__NAMESPACE__.'\\'.$namespace->name] = $namespace->path;
-			}
-		}
-
 		if(!empty($config->library)) {
 			foreach($config->library as $library) {
 				$namespaces[$library->name] = $config->application->libraryDir.$library->path;
