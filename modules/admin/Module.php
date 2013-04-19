@@ -12,19 +12,29 @@ class Module implements ModuleDefinitionInterface {
 	public function registerServices($di) {
 		$config = $di->get('config');
 
+		//loader namespace
 		$loader = new \Phalcon\Loader();
+		$namespaces = array(
+			__NAMESPACE__.'\Controllers' 	=> 'controllers/',
+			__NAMESPACE__.'\Models' 		=> 'models/',
+			__NAMESPACE__.'\Forms' 			=> 'forms/',
+		);
 
-		$namespacesModule = array();
-
-		if(!empty($config->namespaceModule)) {
-			foreach($config->namespaceModule as $namespaceModule) {
-				$namespacesModule[__NAMESPACE__.'\\'.$namespaceModule->name] = $namespaceModule->path;
+		if(!empty($config->namespace)) {
+			foreach($config->namespace as $namespace) {
+				$namespaces[__NAMESPACE__.'\\'.$namespace->name] = $namespace->path;
 			}
-
-			$loader->registerNamespaces($namespacesModule);
-
-			$loader->register();
 		}
+
+		if(!empty($config->library)) {
+			foreach($config->library as $library) {
+				$namespaces[$library->name] = $config->application->libraryDir.$library->path;
+			}
+		}
+
+		$loader->registerNamespaces($namespaces);
+
+		$loader->register();
 
 		//Registering a dispatcher
 		$di->set('dispatcher', function() {

@@ -7,10 +7,10 @@ $di = new \Phalcon\DI\FactoryDefault();
 
 //pobiera główny config
 $config = new \Phalcon\Config\Adapter\Ini('configs/application.ini');
-$di->set('config', $config);
+$di->set('config', $config);$loader = new \Phalcon\Loader();
 
 //uruchomienie sesii
-$di->set('session', function() {
+$di->setShared('session', function() {
 	$session = new Phalcon\Session\Adapter\Files();
 	$session->start();
 
@@ -18,7 +18,7 @@ $di->set('session', function() {
 });
 
 //ustawienie bazy danych
-$di->set('db', function() use ($config) {
+$di->setShared('db', function() use ($config) {
 	$db =  new \Phalcon\Db\Adapter\Pdo\Mysql(array(
 		'host' => $config->database->host,
 		'username' => $config->database->user,
