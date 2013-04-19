@@ -10,10 +10,22 @@ class Module implements ModuleDefinitionInterface {
 	public function registerAutoloaders() { }
 
 	public function registerServices($di) {
+		//ładowanie configu
 		$config = $di->get('config');
+
+		if(!empty($config->application->configsDir)) {
+			$configPath = $config->application->configsDir.'module.ini';
+
+			if(file_exists($configPath)) {
+				$moduleConfig = new \Phalcon\Config\Adapter\Ini($configPath);
+
+				$config->merge($moduleConfig);
+			}
+		}
 
 		//loader namespace
 		$loader = new \Phalcon\Loader();
+
 		$namespaces = array(
 			__NAMESPACE__.'\Controllers' 	=> $config->application->controllersDir,
 			__NAMESPACE__.'\Models' 		=> $config->application->modelsDir,
