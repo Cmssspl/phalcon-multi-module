@@ -7,22 +7,24 @@ chdir(__DIR__);
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
 class Module implements ModuleDefinitionInterface {
-	public function registerAutoloaders() {
-		$loader = new \Phalcon\Loader();
-
-		$loader->registerNamespaces(
-			array(
-				'Admin\Controllers' => 'controllers/',
-				'Admin\Models'      => 'models/',
-				'Admin\Forms'      	=> 'forms/'
-			)
-		);
-
-		$loader->register();
-	}
+	public function registerAutoloaders() { }
 
 	public function registerServices($di) {
 		$config = $di->get('config');
+
+		$loader = new \Phalcon\Loader();
+
+		$namespacesModule = array();
+
+		if(!empty($config->namespaceModule)) {
+			foreach($config->namespaceModule as $namespaceModule) {
+				$namespacesModule[__NAMESPACE__.'\\'.$namespaceModule->name] = $namespaceModule->path;
+			}
+
+			$loader->registerNamespaces($namespacesModule);
+
+			$loader->register();
+		}
 
 		//Registering a dispatcher
 		$di->set('dispatcher', function() {
@@ -57,17 +59,17 @@ class Module implements ModuleDefinitionInterface {
 			$view = new \Phalcon\Mvc\View();
 			$view->setViewsDir($config->application->viewsDir);
 			$view->registerEngines(array(
-				'.volt' => function($view, $di) use ($config) {
-					$volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
+				$config->view->volt->extension => function($view, $di) use ($config) {
+					$volt = new $config->view->volt->engine($view, $di);
 
 					$volt->setOptions(array(
-						'compiledPath' 		=> $config->application->cacheDir.$config->view->cacheDir,
-						'compiledExtension' => $config->view->extension
+						'compiledPath' 		=> $config->application->cacheDir.$config->view->volt->cacheDir,
+						'compiledExtension' => $config->view->volt->compiledExtension
 					));
 
 					return $volt;
 				},
-				'.phtml' => 'Phalcon\Mvc\View\Engine\Php'
+				$config->view->php->extension => $config->view->php->engine
 			));
 
 			return $view;

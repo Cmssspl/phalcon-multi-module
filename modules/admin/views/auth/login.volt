@@ -1,3 +1,0 @@
-LOGOWANIE
-
-{{ loginForm }}

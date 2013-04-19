@@ -18,7 +18,7 @@ class AuthController extends \Phalcon\Mvc\Controller
 	public function loginAction() {
 		$loginForm = new LoginForm();
 
-		$this->view->setVar('loginForm', $loginForm->render('name'));
+		$this->view->setVar('loginForm', $loginForm);
 	}
 
 	public function logoutAction() {
