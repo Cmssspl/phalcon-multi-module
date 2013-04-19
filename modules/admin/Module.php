@@ -44,15 +44,22 @@ class Module implements ModuleDefinitionInterface {
 		$loader->register();
 
 		//Registering a dispatcher
-		$di->setShared('dispatcher', function() use ($di) {
+		$di->setShared('dispatcher', function() use ($di, $config) {
 			//Obtain the standard eventsManager from the DI
 			$eventsManager = $di->getShared('eventsManager');
 
-			//Instantiate the Security plugin
-			$security = new Plugins\Auth($di);
-
 			//Listen for events produced in the dispatcher using the Security plugin
-			$eventsManager->attach('dispatch', $security);
+			if(!empty($config->plugins)) {
+				foreach($config->plugins as $plugin) {
+					if(!empty($plugin->global)) {
+						$pluginClass = $plugin->name;
+					} else {
+						$pluginClass = __NAMESPACE__.'\Plugins\\'.$plugin->name;
+					}
+
+					$eventsManager->attach($plugin->trigger, new $pluginClass($di));
+				}
+			}
 
 			$dispatcher = new \Phalcon\Mvc\Dispatcher();
 			$dispatcher->setDefaultNamespace(__NAMESPACE__.'\Controllers');
