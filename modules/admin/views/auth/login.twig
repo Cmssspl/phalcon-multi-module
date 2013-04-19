@@ -1,8 +1,13 @@
+<?php
+use \Phalcon\Tag;
+?>
+
 <h1>Logowanie</h1>
 
-<div>
+{{ form('auth/login', 'method': 'post') }}
 	Login: {{ loginForm.render('nick') }}
-	Hasło: {{ loginForm.render('pass') }}
+	Haslo: {{ loginForm.render('pass') }}
 	
 	{#{{ loginForm.render('save') }}#}
-</div>
+	{{ submit_button('Login') }}
+{{ endForm() }}

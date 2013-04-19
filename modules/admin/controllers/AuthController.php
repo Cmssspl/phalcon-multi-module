@@ -18,8 +18,6 @@ class AuthController extends \Phalcon\Mvc\Controller
 	public function loginAction() {
 		$loginForm = new LoginForm();
 
-		new \Ss\Test();
-
 		$this->view->setVar('loginForm', $loginForm);
 	}
 
