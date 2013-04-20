@@ -91,6 +91,13 @@ class Module implements ModuleDefinitionInterface {
 			}
 		}
 
+		$di->set('url', function() use ($config){
+			$url = new \Phalcon\Mvc\Url();
+			$url->setBaseUri('/'.$config->application->baseUrl);
+
+			return $url;
+		});
+
 		//Registering the view component
 		$di->set('view', function() use ($config) {
 			$view = new \Phalcon\Mvc\View();

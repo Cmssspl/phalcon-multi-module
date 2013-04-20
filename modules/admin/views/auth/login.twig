@@ -1,10 +1,11 @@
 <?php
 use \Phalcon\Tag;
+use \Phalcon\Mvc\Url;
 ?>
 
 <h1>Logowanie</h1>
 
-{{ form('auth/login', 'method': 'post') }}
+{{ form( null, 'method': 'post') }}
 	Login: {{ loginForm.render('nick') }}
 	Haslo: {{ loginForm.render('pass') }}
 	

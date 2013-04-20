@@ -15,7 +15,29 @@ class AuthController extends \Phalcon\Mvc\Controller {
 //	}
 
 	public function loginAction() {
-		$this->view->setVar('loginForm', new LoginForm());
+		$loginForm = new LoginForm();
+
+		if ($this->request->isPost()) {
+			if ($loginForm->isValid($_POST)) {
+				//przepisuje wartości
+				$nick = $this->request->getPost('nick');
+				$password = $this->request->getPost('password');
+
+				$usersModel = new Users();
+				$user = $usersModel->login($nick, $password);
+
+				echo '<pre>'; print_r($user->id); echo '</pre>';
+				exit;
+			} else {
+				$this->flash->error($loginForm->getMessages());
+			}
+		}
+
+		$this->view->setVar('loginForm', $loginForm);
+//		$this->view->setVar('loginFormErrors', $errors);
+
+		//$test = $this->getDI()->get('router');
+		//$this->view->setVar('router', $test);
 	}
 
 	public function logoutAction() {
