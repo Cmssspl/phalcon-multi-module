@@ -3,7 +3,9 @@
 namespace Admin\Controllers;
 
 use Admin\Forms\LoginForm;
-use Admin\Models\Users;
+
+use Admin\Models\Users,
+	Admin\Models\UsersLog;
 
 class AuthController extends \Phalcon\Mvc\Controller {
 //	private function _registerSession($user)
@@ -26,15 +28,26 @@ class AuthController extends \Phalcon\Mvc\Controller {
 				$usersModel = new Users();
 				$user = $usersModel->login($nick, $password);
 
-				echo '<pre>'; print_r($user->id); echo '</pre>';
-				exit;
+				if(!empty($user)) {
+					$this->session->set('auth', new \Phalcon\Config(array(
+						'id' => $user->id,
+						'nick' => $user->nick
+					)));
+
+					$usersLogModel = new UsersLog();
+					$usersLogModel->add();
+
+					$this->flash->success('Nie prawidłowe dane');
+				} else {
+					$this->flash->error('Nie prawidłowe dane');
+				}
 			} else {
 				$this->flash->error($loginForm->getMessages());
 			}
 		}
 
 		$this->view->setVar('loginForm', $loginForm);
-//		$this->view->setVar('loginFormErrors', $errors);
+		$this->view->setVar('test', $this->session->get('auth'));
 
 		//$test = $this->getDI()->get('router');
 		//$this->view->setVar('router', $test);

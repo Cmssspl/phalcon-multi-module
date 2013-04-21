@@ -57,6 +57,10 @@ $di->setShared('router', function () use($config) {
 	return $router;
 });
 
+$di->setShared('flash', function() {
+	return new \Phalcon\Flash\Direct();
+});
+
 try {
 	//Create an application
 	$application = new \Phalcon\Mvc\Application();

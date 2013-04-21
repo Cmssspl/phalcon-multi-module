@@ -24,14 +24,6 @@ class Users extends \Phalcon\Mvc\Model {
 			)
 		));
 
-		$usersHistoryModel = new UsersHistory();
-		$usersHistoryModel->log();
-
-//		if(!empty($result)) {
-//			$loginHistoryModel = new LoginHistory();
-//			$loginHistoryModel->
-//		}
-
 		return $result;
 	}
 }

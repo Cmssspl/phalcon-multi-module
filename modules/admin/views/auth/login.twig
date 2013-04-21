@@ -5,6 +5,10 @@ use \Phalcon\Mvc\Url;
 
 <h1>Logowanie</h1>
 
+{#<?php print_r($test); ?>#}
+
+<div id="messages">{{ flash.output() }}</div>
+
 {{ form( null, 'method': 'post') }}
 	Login: {{ loginForm.render('nick') }}
 	Haslo: {{ loginForm.render('pass') }}
