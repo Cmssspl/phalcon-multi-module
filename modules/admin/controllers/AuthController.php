@@ -42,7 +42,7 @@ class AuthController extends \Phalcon\Mvc\Controller {
 					$this->flash->error('Nie prawidłowe dane');
 				}
 			} else {
-				$this->flash->error($loginForm->getMessages());
+				$this->flash->error('brak danych'); //$loginForm->getMessages()
 			}
 		}
 

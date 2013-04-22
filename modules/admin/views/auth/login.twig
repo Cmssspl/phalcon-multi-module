@@ -3,16 +3,16 @@ use \Phalcon\Tag;
 use \Phalcon\Mvc\Url;
 ?>
 
-<h1>Logowanie</h1>
+<h3>h3</h3>
+<pre>
+<?php print_r($this->flashSession->error('brak danych')); ?>
+	<?php print_r($this->flashSession->output()); ?>
 
-{#<?php print_r($test); ?>#}
-
-<div id="messages">{{ flash.output() }}</div>
+<div id="messages"></div>
 
 {{ form( null, 'method': 'post') }}
 	Login: {{ loginForm.render('nick') }}
 	Haslo: {{ loginForm.render('pass') }}
 	
-	{#{{ loginForm.render('save') }}#}
-	{{ submit_button('Login') }}
+	{{ loginForm.render('save') }}
 {{ endForm() }}
