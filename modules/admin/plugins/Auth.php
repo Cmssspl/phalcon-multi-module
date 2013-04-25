@@ -98,7 +98,5 @@ class Auth extends Plugin
 
 			return false;
 		}
-
 	}
-
 }

@@ -3,17 +3,15 @@
 	<head>
 		<meta charset="utf-8" />
 
-		{{ stylesheet_link("css/reset.css") }}
+		{{ stylesheet_link('css/reset.css') }}
 
-		{{ stylesheet_link("css/top.css") }}
+		{{ stylesheet_link('css/top.css') }}
 
 		<title>{{ get_title() }}</title>
 	</head>
 	<body>
 		<section id="top">
-			<a class="logo" href="">
-				<img src="admin/img/logo.png" alt="Logo Cms Shadow Site">
-			</a>
+			<a class="logo" href="">Shadow Site</a>
 
 			<nav id="topMenu">
 				<ul>
@@ -26,7 +24,11 @@
 
 		{{ content() }}
 
+		{# jQuery #}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js") }}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js") }}
+
+		{# fonts #}
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,300italic,300,600italic,700,700italic,800,800italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	</body>
 </html>
