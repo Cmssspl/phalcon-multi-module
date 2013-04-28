@@ -70,7 +70,6 @@ class Auth extends Plugin
 	}
 
 	public function beforeDispatch(Event $event, Dispatcher $dispatcher) {
-
 		$auth = $this->session->get('auth');
 
 		if (!$auth){

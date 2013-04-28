@@ -99,7 +99,7 @@ class Module implements ModuleDefinitionInterface {
 		});
 
 		//Registering the view component
-		$di->set('view', function() use ($config) {
+		$di->set('view', function() use ($di ,$config) {
 			$view = new \Phalcon\Mvc\View();
 			$view->setViewsDir($config->application->viewsDir);
 			$view->registerEngines(array(
@@ -115,6 +115,14 @@ class Module implements ModuleDefinitionInterface {
 				},
 				$config->view->php->extension => $config->view->php->engine
 			));
+
+			$auth = $di->get('session')->get('auth');
+
+			if ($auth){
+				$view->setLayout('login');
+			} else {
+//				$view->setLayout('logout');
+			}
 
 			return $view;
 		});

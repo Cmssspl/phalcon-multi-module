@@ -3,26 +3,33 @@
 	<head>
 		<meta charset="utf-8" />
 
-		{{ stylesheet_link('css/reset.css') }}
+		{{ stylesheet_link('style/reset.css') }}
 
-		{{ stylesheet_link('css/top.css') }}
+		{{ stylesheet_link('style/elements.css') }}
+
+		{{ stylesheet_link('style/body.css') }}
+		{{ stylesheet_link('style/top.css') }}
+		{{ stylesheet_link('style/page.css') }}
+
+		{{ stylesheet_link('style/login.css') }}
 
 		<title>{{ get_title() }}</title>
 	</head>
 	<body>
 		<section id="top">
-			<a class="logo" href="">Shadow Site</a>
+			<div class="wrapper">
+				<a class="logo" href="">Shadow Site</a>
 
-			<nav id="topMenu">
-				<ul>
-					<li><a href="#"> </a></li>
-					<li><a href="#"> </a></li>
-					<li><a href="#"> </a></li>
-				</ul>
-			</nav>
+				<nav class="menu">
+					{{ partial('menu/top') }}
+				</nav>
+			</div>
 		</section>
 
-		{{ content() }}
+		<section id="page">
+			{{ content() }}
+		</section>
+
 
 		{# jQuery #}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js") }}

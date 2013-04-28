@@ -16,6 +16,9 @@ class AuthController extends \Phalcon\Mvc\Controller {
 //		));
 //	}
 
+	public function initialize() {
+	}
+
 	public function loginAction() {
 		$loginForm = new LoginForm();
 

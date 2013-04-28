@@ -4,6 +4,7 @@ namespace Admin\Forms;
 
 use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Text,
+	Phalcon\Forms\Element\Password,
 	Phalcon\Forms\Element\Select,
 	Phalcon\Forms\Element\Submit;
 
@@ -15,7 +16,9 @@ use Phalcon\Validation\Validator\PresenceOf,
 class LoginForm extends Form {
 	public function initialize() {
 		//nick
-		$nick = new Text('nick');
+		$nick = new Text('nick', array(
+			'placeholder' => 'Login:'
+		));
 
 		$nick->addValidator(new PresenceOf(array(
 			'message' => 'Nick jest wymagany'
@@ -31,7 +34,9 @@ class LoginForm extends Form {
 		$this->add($nick);
 
 		//pass
-		$pass = new Text('pass');
+		$pass = new Password('pass', array(
+			'placeholder' => 'Hasło:'
+		));
 
 		$pass->addValidator(new PresenceOf(array(
 			'message' => 'Hasło jest wymagany'
@@ -46,6 +51,10 @@ class LoginForm extends Form {
 
 		$this->add($pass);
 
-		$this->add(new Submit('save'));
+		$login = new Submit('login', array(
+			'value' => 'adsadsads'
+		));
+
+		$this->add($login);
 	}
 }
