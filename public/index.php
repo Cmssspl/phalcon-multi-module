@@ -58,7 +58,7 @@ $di->setShared('router', function () use($config) {
 });
 
 $di->setShared('flash', function() {
-	return new \Phalcon\Flash\Direct();
+	return new \Phalcon\Flash\Session();
 });
 
 try {

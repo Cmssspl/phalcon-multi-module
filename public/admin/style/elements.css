@@ -1,0 +1,28 @@
+#login {
+	margin: 0px auto;
+	padding: 20px 20px 10px 20px;
+
+	width: 200px;
+
+	border: 1px solid #dddddd;
+	border-radius: 2px;
+
+	background-color: #ffffff;
+}
+
+#login h1 {
+	margin: 0px 0px 10px;
+
+	border: 0px solid #eeeeee;
+	border-bottom-width: 1px;
+}
+
+#login input {
+	margin: 0px 0px 10px;
+	padding: 6px 12px;
+
+	width: 100%;
+
+	border: 1px solid #dddddd;
+	border-radius: 2px;
+}

@@ -45,8 +45,8 @@ class LoginForm extends Form {
 		$pass->addValidator(new StringLength(array(
 			'min' => 4,
 			'max' => 32,
-			'messageMinimum' => 'Hasło jest za krótki',
-			'messageMaximum' => 'Hasło jest za długi'
+			'messageMinimum' => 'Hasło jest za krótkie',
+			'messageMaximum' => 'Hasło jest za długie'
 		)));
 
 		$this->add($pass);

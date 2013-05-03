@@ -1,4 +1,4 @@
-#page {
+#middle {
 	border: 0px solid;
 	border-top-width: 32px;
 
@@ -15,6 +15,14 @@
 	color: #222222;
 }
 
-#page #content {
-	display:  table-cell;
+#middle #centent {
+	overflow: hidden;
+	display: table-cell;
 }
+
+#middle #centent.logout {
+	background-color: #eeeeee;
+
+	vertical-align: middle;
+}
+

@@ -2,6 +2,8 @@
 
 namespace Admin\Controllers;
 
+use \Phalcon\Mvc\View;
+
 use Admin\Forms\LoginForm;
 
 use Admin\Models\Users,
@@ -17,6 +19,7 @@ class AuthController extends \Phalcon\Mvc\Controller {
 //	}
 
 	public function initialize() {
+
 	}
 
 	public function loginAction() {
@@ -40,12 +43,18 @@ class AuthController extends \Phalcon\Mvc\Controller {
 					$usersLogModel = new UsersLog();
 					$usersLogModel->add();
 
-					$this->flash->success('Nie prawidłowe dane');
+					$this->flash->success('Zalogowano');
 				} else {
-					$this->flash->error('Nie prawidłowe dane');
+					$this->flash->error('Błędny login lub hasło, spróbuj ponownie lub skorzystaj z opcji "zapomniałem hasła"');
 				}
 			} else {
-				$this->flash->error('brak danych'); //$loginForm->getMessages()
+				$errors = $loginForm->getMessages();
+
+				if(!empty($errors)) {
+					foreach($errors as $error) {
+						$this->flash->error($error);
+					}
+				}
 			}
 		}
 
@@ -56,11 +65,15 @@ class AuthController extends \Phalcon\Mvc\Controller {
 		//$this->view->setVar('router', $test);
 	}
 
-	public function logoutAction() {
-		echo 'WYLOGOWYWANIE';
+	public function restorePasswordAction() {
+
 	}
 
-	private function getFormLogin() {
+	public function helpAction() {
 
+	}
+
+	public function logoutAction() {
+		echo 'WYLOGOWYWANIE';
 	}
 }

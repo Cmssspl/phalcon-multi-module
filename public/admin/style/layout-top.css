@@ -15,6 +15,10 @@
 	background: -ms-linear-gradient(top, #222222 0%,#111111 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #222222 0%,#111111 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#111111',GradientType=0 ); /* IE6-8 */
+
+	-webkit-box-shadow: 0px 0px 4px #222222;
+	-moz-box-shadow: 0px 0px 4px #222222;
+	box-shadow: 0px 0px 4px #222222;
 }
 
 #top .wrapper {

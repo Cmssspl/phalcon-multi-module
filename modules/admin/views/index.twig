@@ -7,11 +7,13 @@
 
 		{{ stylesheet_link('style/elements.css') }}
 
-		{{ stylesheet_link('style/body.css') }}
-		{{ stylesheet_link('style/top.css') }}
-		{{ stylesheet_link('style/page.css') }}
+		{#{{ stylesheet_link('style/error.css') }}#}
 
-		{{ stylesheet_link('style/login.css') }}
+		{{ stylesheet_link('style/layout.css') }}
+		{{ stylesheet_link('style/layout-top.css') }}
+		{{ stylesheet_link('style/layout-middle.css') }}
+
+		{#{{ stylesheet_link('style/login.css') }}#}
 
 		<title>{{ get_title() }}</title>
 	</head>
@@ -21,15 +23,18 @@
 				<a class="logo" href="">Shadow Site</a>
 
 				<nav class="menu">
-					{{ partial('menu/top') }}
+					{{ partial('layouts/menu/top') }}
 				</nav>
 			</div>
 		</section>
 
-		<section id="page">
+		<section id="middle">
 			{{ content() }}
 		</section>
 
+		<section id="error">
+			{{ flash.output() }}
+		</section>
 
 		{# jQuery #}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js") }}

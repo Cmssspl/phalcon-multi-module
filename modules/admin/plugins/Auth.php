@@ -14,11 +14,6 @@ class Auth extends Plugin
 	}
 
 	public function getAcl() {
-//		$ini = new \Phalcon\Config\Adapter\Ini('app/configs/acl.ini');
-//
-//		echo '<pre>'; print_r($ini); echo '</pre>';
-//		exit;
-
 		$acl = new \Phalcon\Acl\Adapter\Memory();
 
 		$acl->setDefaultAction(\Phalcon\Acl::DENY);
@@ -35,6 +30,7 @@ class Auth extends Plugin
 
 		//Private area resources
 		$privateResources = array(
+			'login'	=> array('index'),
 			'auth'	=> array('logout')
 		);
 
@@ -44,8 +40,7 @@ class Auth extends Plugin
 
 		//Public area resources
 		$publicResources = array(
-			'index' => array('index'),
-			'auth'	=> array('index', 'login')
+			'auth'	=> array('login', 'registry', 'restorePassword', 'help')
 		);
 
 		foreach ($publicResources as $resource => $actions) {
@@ -72,10 +67,10 @@ class Auth extends Plugin
 	public function beforeDispatch(Event $event, Dispatcher $dispatcher) {
 		$auth = $this->session->get('auth');
 
-		if (!$auth){
-			$role = 'Guests';
-		} else {
+		if ($auth){
 			$role = 'Users';
+		} else {
+			$role = 'Guests';
 		}
 
 		$controller = $dispatcher->getControllerName();
@@ -86,7 +81,9 @@ class Auth extends Plugin
 		$allowed = $acl->isAllowed($role, $controller, $action);
 
 		if ($allowed != Acl::ALLOW) {
-			$this->flash->error("You don't have access to this module");
+//			if($role != 'Guests') {
+//				$this->flash->error('Nie masz uprawnień');
+//			}
 
 			$dispatcher->forward(
 				array(
