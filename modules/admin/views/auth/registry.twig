@@ -1,0 +1,28 @@
+<div id="registry" class="box">
+	<h1>Rejestracja:</h1>
+
+	{{ form( null, 'method': 'post') }}
+		<div class="row-fluid">
+			<div class="span6">
+				{{ registryForm.render('nick') }}
+				{{ registryForm.render('email') }}
+
+				{{ registryForm.render('pass') }}
+				{{ registryForm.render('pass2') }}
+			</div>
+
+			<div class="span6">
+				{{ registryForm.render('name') }}
+				{{ registryForm.render('surname') }}
+
+				{{ registryForm.render('tel') }}
+
+				{{ registryForm.render('registry') }}
+			</div>
+		</div>
+	{{ endForm() }}
+
+	<p>
+		Wszystkie pola są wymagane.
+	</p>
+</div>

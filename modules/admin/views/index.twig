@@ -1,19 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		{{ stylesheet_link('style/bootstrap.min.css') }}
 		{{ stylesheet_link('style/reset.css') }}
 
 		{{ stylesheet_link('style/elements.css') }}
 
-		{#{{ stylesheet_link('style/error.css') }}#}
-
 		{{ stylesheet_link('style/layout.css') }}
 		{{ stylesheet_link('style/layout-top.css') }}
 		{{ stylesheet_link('style/layout-middle.css') }}
-
-		{#{{ stylesheet_link('style/login.css') }}#}
+		{{ stylesheet_link('style/layout-error.css') }}
 
 		<title>{{ get_title() }}</title>
 	</head>
@@ -39,6 +38,9 @@
 		{# jQuery #}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js") }}
 		{{ javascript_include("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js") }}
+
+		{#bootstrap#}
+		{{ javascript_include("javascript/bootstrap.min.js") }}
 
 		{# fonts #}
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,300italic,300,600italic,700,700italic,800,800italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>

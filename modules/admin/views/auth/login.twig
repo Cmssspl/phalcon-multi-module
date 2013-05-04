@@ -1,11 +1,11 @@
-<div id="login">
+<div id="login" class="box">
 	<h1>Logowanie:</h1>
 
 	{{ form( null, 'method': 'post') }}
-		{{ loginForm.render('nick') }}
+	{{ loginForm.render('nick') }}
 
-		{{ loginForm.render('pass') }}
+	{{ loginForm.render('pass') }}
 
-		{{ loginForm.render('login') }}
+	{{ loginForm.render('login') }}
 	{{ endForm() }}
 </div>

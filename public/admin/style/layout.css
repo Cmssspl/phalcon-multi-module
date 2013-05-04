@@ -6,4 +6,79 @@ html {
 
 body {
 	height: 100%;
+
+	font-family: 'Open Sans';
+	font-size: 12px;
+	line-height: 16px;
+	text-align: justify;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+
+	list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0px 0px 8px;
+	padding: 0px 0px 2px 0px;
+
+	border: 0px solid #eeeeee;
+	border-bottom-width: 1px;
+
+	font-weight: 600;
+	line-height: normal;
+}
+
+h1 {
+	font-size: 14px;
+}
+
+h2 {
+	font-size: 14px;
+}
+
+h3 {
+	font-size: 13px;
+}
+
+h4 {
+	font-size: 13px;
+}
+
+h5 {
+	font-size: 12px;
+}
+
+h6 {
+	margin: 0px 0px 2px;
+	padding: 0px 0px 0px 0px;
+
+	font-size: 12px;
+}
+
+p {
+	margin: 0px 0px 10px;
+}
+
+a {
+	color: #FF0D0E;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: #FF0D0E;
+	text-decoration: underline;
+}
+
+input[type] {
+	margin: 0px 0px 10px;
+	padding: 6px 8px;
+
+	width: 100%;
+	height: 30px;
+
+	border: 1px solid #dddddd;
+	border-radius: 2px;
 }

@@ -4,7 +4,8 @@ namespace Admin\Controllers;
 
 use \Phalcon\Mvc\View;
 
-use Admin\Forms\LoginForm;
+use Admin\Forms\LoginForm,
+	Admin\Forms\RegistryForm;
 
 use Admin\Models\Users,
 	Admin\Models\UsersLog;
@@ -67,6 +68,12 @@ class AuthController extends \Phalcon\Mvc\Controller {
 
 	public function restorePasswordAction() {
 
+	}
+
+	public function registryAction() {
+		$registryForm = new RegistryForm();;
+
+		$this->view->setVar('registryForm', $registryForm);
 	}
 
 	public function helpAction() {
