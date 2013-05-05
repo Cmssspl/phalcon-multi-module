@@ -40,7 +40,7 @@ footer, header, hgroup, menu, nav, section {
 	/*line-height: 1;*/
 /*}*/
 
-ol, ul {
+nav ul {
 	list-style: none;
 }
 

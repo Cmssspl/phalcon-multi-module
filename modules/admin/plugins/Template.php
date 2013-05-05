@@ -12,7 +12,7 @@ class Template extends Plugin
 		$this->_dependencyInjector = $dependencyInjector;
 	}
 
-	public function beforeDispatch(Event $event, Dispatcher $dispatcher) {
+	public function afterExecuteRoute(Event $event, Dispatcher $dispatcher) {
 		$auth = $this->session->get('auth');
 
 		//layout

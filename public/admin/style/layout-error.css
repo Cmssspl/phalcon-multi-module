@@ -6,7 +6,8 @@
 	right: 0px;
 }
 
-#error .errorMessage {
+#error .errorMessage,
+#error .successMessage {
 	margin: 6px 0px 0px 0px;
 	padding: 10px 15px;
 

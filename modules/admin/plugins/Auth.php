@@ -20,8 +20,8 @@ class Auth extends Plugin
 
 		//Register roles
 		$roles = array(
-			'users' => new \Phalcon\Acl\Role('Users'),
-			'guests' => new \Phalcon\Acl\Role('Guests')
+			'guests' => new \Phalcon\Acl\Role('Guests'),
+			'users' => new \Phalcon\Acl\Role('Users')
 		);
 
 		foreach ($roles as $role) {
@@ -30,7 +30,7 @@ class Auth extends Plugin
 
 		//Private area resources
 		$privateResources = array(
-			'login'	=> array('index'),
+			'index' => array('index', 'test'),
 			'auth'	=> array('logout')
 		);
 
@@ -48,17 +48,17 @@ class Auth extends Plugin
 		}
 
 		//Grant access to public areas to both users and guests
-		foreach ($roles as $role) {
+		//foreach ($roles as $role) {
 			foreach ($publicResources as $resource => $actions) {
-				$acl->allow($role->getName(), $resource, $actions);
+				$acl->allow('Guests', $resource, $actions);
 			}
-		}
+		//}
 
 		//Grant acess to private area to role Users
 		foreach ($privateResources as $resource => $actions) {
-			foreach ($actions as $action){
-				$acl->allow('Users', $resource, $action);
-			}
+			//foreach ($actions as $action){
+				$acl->allow('Users', $resource, $actions);
+			//}
 		}
 
 		return $acl;
@@ -85,12 +85,23 @@ class Auth extends Plugin
 //				$this->flash->error('Nie masz uprawnień');
 //			}
 
-			$dispatcher->forward(
-				array(
-					'controller' 	=> 'auth',
-					'action' 		=> 'login'
-				)
-			);
+			if($role == 'Guests') {
+				$dispatcher->forward(
+					array(
+						'controller' 	=> 'auth',
+						'action' 		=> 'login'
+					)
+				);
+			} else {
+				$this->flash->error('Nie masz uprawnień');
+
+				$dispatcher->forward(
+					array(
+						'controller' 	=> 'index',
+						'action' 		=> 'index'
+					)
+				);
+			}
 
 			return false;
 		}
