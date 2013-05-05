@@ -86,6 +86,10 @@ class Auth extends Plugin
 //			}
 
 			if($role == 'Guests') {
+				if( !( $controller == 'index' && $action == 'index') ) {
+					$this->flash->error('Nie masz uprawnień');
+				}
+
 				$dispatcher->forward(
 					array(
 						'controller' 	=> 'auth',

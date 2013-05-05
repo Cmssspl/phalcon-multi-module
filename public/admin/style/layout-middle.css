@@ -15,6 +15,15 @@
 	color: #222222;
 }
 
+#middle #menu {
+	width: 220px;
+
+	overflow: hidden;
+	display: table-cell;
+
+	background-color: #333333;
+}
+
 #middle #centent {
 	overflow: hidden;
 	display: table-cell;

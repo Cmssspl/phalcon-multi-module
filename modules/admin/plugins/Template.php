@@ -17,7 +17,7 @@ class Template extends Plugin
 
 		//layout
 		if ($auth) {
-//			$this->view->setMainView('login');
+			$this->view->setLayout('login');
 		} else {
 			$this->view->setLayout('logout');
 		}
