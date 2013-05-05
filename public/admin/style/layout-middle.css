@@ -24,6 +24,10 @@
 	background-color: #333333;
 }
 
+#middle #menu .user {
+
+}
+
 #middle #centent {
 	overflow: hidden;
 	display: table-cell;

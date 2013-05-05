@@ -25,7 +25,10 @@ class Template extends Plugin
 		//menu up
 		if ($auth) {
 			$menuTop = array(
-				'logout' => 'Wyloguj'
+				'account'	=> 'Moje konto',
+				'massage'	=> 'Wiadomości',
+				'settings' 	=> 'Ustawienia',
+				'logout' 	=> 'Wyloguj'
 			);
 		} else {
 			$menuTop = array(

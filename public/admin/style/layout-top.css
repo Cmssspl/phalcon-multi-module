@@ -22,7 +22,7 @@
 }
 
 #top .wrapper {
-	margin: 0px 20px;
+	margin: 0px 10px;
 }
 
 #top .logo {
@@ -37,6 +37,9 @@
 
 #top .menu {
 	float: right;
+
+	border-left: 1px solid #333333;
+	border-right: 1px solid #000;
 }
 
 #top .menu li {
@@ -44,19 +47,21 @@
 }
 
 #top .menu a {
-	margin: 0px 1px;
+	margin: 0px 0px;
 	padding: 6px 10px;
 
 	display: block;
 
-	background-color: #000000;
+	border-left: 1px solid #000;
+	border-right: 1px solid #333333;
 
-	color: #dddddd;
+	color: #bbb;
 	font-size: 12px;
+	text-decoration: none;
 }
 
 #top .menu a:hover {
-	background-color: #222;
+	background-color: #111111;
 
 	color: #ffffff;
 }
